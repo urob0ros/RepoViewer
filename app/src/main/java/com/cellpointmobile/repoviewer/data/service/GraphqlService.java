@@ -14,7 +14,7 @@ public class GraphqlService {
 
     public static Headers getJsonHeader() {
         Headers.Builder builder = new Headers.Builder();
-        builder.add("Authorization", "Bearer 18114b5a0c319ad5a114e221d619ccd6131130c6 ");
+        builder.add("Authorization", "Bearer 9f3cce5dba79795fd0e9eee713f7b44934df4752 ");
         return builder.build();
     }
 

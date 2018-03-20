@@ -10,16 +10,16 @@ import android.widget.TextView;
 import com.cellpointmobile.repoviewer.R;
 import com.cellpointmobile.repoviewer.data.model.Repository;
 
-import java.util.List;
+import io.realm.OrderedRealmCollection;
+import io.realm.RealmRecyclerViewAdapter;
 
 /**
  * Github search adapter which binds data to each item in the recycler view
  */
-public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
+public class SearchAdapter extends RealmRecyclerViewAdapter<Repository, SearchAdapter.ViewHolder> {
 
-    public List<Repository> repositories;
-    public SearchAdapter(List<Repository> repos) {
-        this.repositories = repos;
+    public SearchAdapter(OrderedRealmCollection<Repository> repos) {
+        super(repos, true);
     }
 
     @NonNull
@@ -33,22 +33,16 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         //repository model receives attributes using graphql query
-        Repository repository = repositories.get(position);
+        final Repository repository = getItem(position);
+        holder.data = repository;
         holder.name.setText(repository.getName());
         holder.description.setText(repository.getDescription());
-    }
-
-    @Override
-    public int getItemCount() {
-        if (repositories != null) {
-            return repositories.size();
-        }
-        return 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView name;
         TextView description;
+        public Repository data;
 
         ViewHolder(View view) {
             super(view);

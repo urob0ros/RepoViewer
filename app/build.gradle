@@ -42,6 +42,7 @@ dependencies {
     compile "com.apollographql.apollo:apollo-android-support:0.3.2"
     compile "com.apollographql.apollo:apollo-rx2-support:0.3.2"
     compile 'com.android.support:recyclerview-v7:27.1.0'
+    compile 'io.realm:android-adapters:2.1.1'
 }
 
 realm {

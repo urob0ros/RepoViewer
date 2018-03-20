@@ -4,7 +4,7 @@ import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.repoviewer.SearchRepos;
 import com.cellpointmobile.repoviewer.data.model.Repository;
 
-import java.util.List;
+import io.realm.OrderedRealmCollection;
 
 /**
  * Defined interfaces for model, view, and presenter
@@ -16,11 +16,12 @@ public class SearchMVP {
     }
 
     public interface View {
-        void showData(List<Repository> repository);
+        void showData(OrderedRealmCollection<Repository> repository);
         void noData();
+        void noNetwork();
     }
 
     public interface Presenter {
-        void fetchData(String test);
+        void fetchData(String searchText);
     }
 }

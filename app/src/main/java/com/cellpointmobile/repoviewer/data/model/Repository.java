@@ -1,9 +1,13 @@
 package com.cellpointmobile.repoviewer.data.model;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Repository model with their constructors, getters, setters
  */
-public class Repository {
+public class Repository extends RealmObject {
+    @PrimaryKey
     private String name;
     private String language;
     private String description;
@@ -31,6 +35,8 @@ public class Repository {
     public String getLanguage() {
         return language;
     }
+
+    public Repository(){}
 
     public Repository(String name, String description, String language) {
         this.name = name;

@@ -10,11 +10,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.cellpointmobile.repoviewer.R;
 import com.cellpointmobile.repoviewer.data.model.Repository;
 
 import java.util.List;
+
+import io.realm.OrderedRealmCollection;
+import io.realm.Realm;
 
 public class SearchActivity extends AppCompatActivity implements SearchMVP.View {
 
@@ -32,6 +37,7 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Repo Viewer");
         getSupportActionBar().setLogo(R.mipmap.ic_icon);
+        Realm.getDefaultInstance();
 
         //presenter setting view
         //presenter fetching data
@@ -91,17 +97,21 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View 
     }
 
     @Override
-    public void showData(List<Repository> repository) {
+    public void showData(OrderedRealmCollection<Repository> repository) {
         //showing received data from graphql, defining adapter of recyclerview
-        SearchAdapter groupsAdapter = new SearchAdapter(repository);
-        recyclerView.setAdapter(groupsAdapter);
-        groupsAdapter.notifyDataSetChanged();
+        SearchAdapter searchAdapter = new SearchAdapter(repository);
+        recyclerView.setAdapter(searchAdapter);
+        searchAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void noData() {
-
+        Toast.makeText(getApplicationContext(),"No results found",Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public void noNetwork() {
+        Toast.makeText(getApplicationContext(),"No network",Toast.LENGTH_LONG).show();
+    }
 }
 
