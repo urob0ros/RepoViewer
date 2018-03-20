@@ -49,6 +49,7 @@ public class SearchPresenter implements SearchMVP.Presenter {
      */
     @Override
     public void fetchData(String searchText) {
+        view.showLoadingDialog();
         disposables.add(Rx2Apollo.from(searchModel.getTasks(searchText))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -68,7 +69,11 @@ public class SearchPresenter implements SearchMVP.Presenter {
                             //get graphql data to store in repositories list
                             for (int i = 0; i < entry.edges().size(); i++) {
                                 if (entry.edges().get(i).node().asRepository().primaryLanguage() != null) {
-                                    repositories.add(new Repository(entry.edges().get(i).node().asRepository().name(), entry.edges().get(i).node().asRepository().description(), entry.edges().get(i).node().asRepository().primaryLanguage().name()));
+                                    repositories.add(new Repository(entry.edges().get(i).node().asRepository().name(),
+                                            entry.edges().get(i).node().asRepository().description(),
+                                            entry.edges().get(i).node().asRepository().primaryLanguage().name(),
+                                            entry.edges().get(i).node().asRepository().stargazers().totalCount(),
+                                            entry.edges().get(i).node().asRepository().forks().totalCount()));
                                 }
                             }
 
@@ -119,6 +124,5 @@ public class SearchPresenter implements SearchMVP.Presenter {
         ConnectivityManager connectivityManager = (ConnectivityManager) MvpApplication.getAppContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         return connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED;
-
     }
 }

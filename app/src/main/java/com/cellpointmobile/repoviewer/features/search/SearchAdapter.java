@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cellpointmobile.repoviewer.R;
@@ -37,17 +38,58 @@ public class SearchAdapter extends RealmRecyclerViewAdapter<Repository, SearchAd
         holder.data = repository;
         holder.name.setText(repository.getName());
         holder.description.setText(repository.getDescription());
+        holder.starCount.setText(Integer.toString(repository.getStarCount()));
+        holder.forkCount.setText(Integer.toString(repository.getForkCount()));
+        switch (repository.getLanguage()) {
+            case "Java":
+                holder.imageView.setImageResource(R.drawable.javaicon);
+                break;
+            case "JavaScript":
+                holder.imageView.setImageResource(R.drawable.javascripticon);
+                break;
+            case "HTML":
+                holder.imageView.setImageResource(R.drawable.htmlicon);
+                break;
+            case "Python":
+                holder.imageView.setImageResource(R.drawable.phytonicon);
+                break;
+            case "PHP":
+                holder.imageView.setImageResource(R.drawable.phpicon);
+                break;
+            case "Ruby":
+                holder.imageView.setImageResource(R.drawable.rubyicon);
+                break;
+            case "C#":
+                holder.imageView.setImageResource(R.drawable.csharp);
+                break;
+            case "CSS":
+                holder.imageView.setImageResource(R.drawable.cssicon);
+                break;
+            case "C++":
+                holder.imageView.setImageResource(R.drawable.cplusicon);
+                break;
+            case "C":
+                holder.imageView.setImageResource(R.drawable.cplusicon);
+                break;
+            default:
+        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView name;
         TextView description;
+        TextView starCount;
+        TextView forkCount;
+        ImageView imageView;
         public Repository data;
 
         ViewHolder(View view) {
             super(view);
             name = view.findViewById(R.id.title);
             description = view.findViewById(R.id.subtitle);
+            starCount = view.findViewById(R.id.star_count);
+            forkCount = view.findViewById(R.id.fork_count);
+            imageView = view.findViewById(R.id.thumbnail);
         }
     }
 }

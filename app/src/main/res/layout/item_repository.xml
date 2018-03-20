@@ -1,29 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/title"
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp"
-        android:text="@string/default_title_text"
-        android:textColor="#003068"
-        android:textSize="25sp" />
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:elevation="3dp">
 
-    <TextView
-        android:id="@+id/subtitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:layout_marginTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="@string/default_subtitle_text"
-        android:textColor="#01489b" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-</RelativeLayout>
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/javaicon"
+                android:focusable="true" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/thumbnail"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="rxjava"
+                android:textColor="#003068"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_marginTop="10dp"
+                android:textColor="#01489b"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/default_subtitle_text"/>
+
+            <ImageView
+                android:id="@+id/star"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/subtitle"
+                android:scaleType="centerCrop"
+                android:src="@drawable/star"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/star_count"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@id/subtitle"
+                android:layout_marginTop="20dp"
+                android:textColor="#003068"
+                android:layout_toEndOf="@id/star"
+                android:text="6,155" />
+
+
+            <ImageView
+                android:id="@+id/fork"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/subtitle"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@id/star_count"
+                android:scaleType="centerCrop"
+                android:src="@drawable/codefork" />
+
+            <TextView
+                android:id="@+id/fork_count"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@id/subtitle"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@+id/fork"
+                android:textColor="#003068"
+                android:text="615" />
+
+            <ImageView
+                android:id="@+id/bookmark"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/subtitle"
+                android:layout_marginTop="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bookmarkicon" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

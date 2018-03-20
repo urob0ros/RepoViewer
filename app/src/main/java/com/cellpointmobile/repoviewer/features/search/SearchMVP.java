@@ -19,6 +19,7 @@ public class SearchMVP {
         void showData(OrderedRealmCollection<Repository> repository);
         void noData();
         void noNetwork();
+        void showLoadingDialog();
     }
 
     public interface Presenter {

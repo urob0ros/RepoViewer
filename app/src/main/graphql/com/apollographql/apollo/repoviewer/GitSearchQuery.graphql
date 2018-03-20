@@ -7,8 +7,15 @@ query SearchRepos($queryString: String!) {
           description
 
           primaryLanguage {
-
             name
+          }
+
+          stargazers {
+            totalCount
+          }
+
+          forks {
+            totalCount
           }
         }
       }

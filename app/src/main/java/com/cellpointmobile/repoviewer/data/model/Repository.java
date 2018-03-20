@@ -11,6 +11,8 @@ public class Repository extends RealmObject {
     private String name;
     private String language;
     private String description;
+    private int starCount;
+    private int forkCount;
 
     public String getName() {
         return name;
@@ -28,19 +30,37 @@ public class Repository extends RealmObject {
         this.description = description;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
     public String getLanguage() {
         return language;
     }
 
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public int getStarCount() {
+        return starCount;
+    }
+
+    public void setStarCount(int starCount) {
+        this.starCount = starCount;
+    }
+
+    public int getForkCount() {
+        return forkCount;
+    }
+
+    public void setForkCount(int forkCount) {
+        this.forkCount = forkCount;
+    }
+
     public Repository(){}
 
-    public Repository(String name, String description, String language) {
+    public Repository(String name, String description, String language, int starCount, int forkCount) {
         this.name = name;
         this.description = description;
         this.language = language;
+        this.starCount = starCount;
+        this.forkCount = forkCount;
     }
 }

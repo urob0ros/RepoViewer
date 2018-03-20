@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.cellpointmobile.repoviewer.R;
@@ -27,6 +28,7 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View 
     private SearchPresenter searchPresenter = new SearchPresenter(new SearchModel());
     private String searchText;
     private SearchView searchView;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         recyclerView = findViewById(R.id.recycler_view);
+        progressBar = findViewById(R.id.progress_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Repo Viewer");
         getSupportActionBar().setLogo(R.mipmap.ic_icon);
@@ -102,16 +105,24 @@ public class SearchActivity extends AppCompatActivity implements SearchMVP.View 
         SearchAdapter searchAdapter = new SearchAdapter(repository);
         recyclerView.setAdapter(searchAdapter);
         searchAdapter.notifyDataSetChanged();
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void noData() {
         Toast.makeText(getApplicationContext(),"No results found",Toast.LENGTH_LONG).show();
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void noNetwork() {
         Toast.makeText(getApplicationContext(),"No network",Toast.LENGTH_LONG).show();
+        progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showLoadingDialog() {
+        progressBar.setVisibility(View.VISIBLE);
     }
 }
 
